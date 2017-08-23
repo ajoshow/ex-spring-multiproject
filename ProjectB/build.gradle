@@ -1,0 +1,8 @@
+// https://softnoise.wordpress.com/2014/09/07/gradle-sub-project-test-dependencies-in-multi-project-builds/
+dependencies {
+	compile project(':ProjectA')
+
+	testCompile project(path: ':ProjectA', configuration: 'testOutput')
+	integrationTestCompile project(path: ':ProjectA', configuration: 'integrationTestOutput')
+	andyTestCompile project(path: ':ProjectA', configuration: 'andyTestOutput')
+}

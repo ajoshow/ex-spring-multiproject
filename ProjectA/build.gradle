@@ -1,0 +1,32 @@
+// https://softnoise.wordpress.com/2014/09/07/gradle-sub-project-test-dependencies-in-multi-project-builds/
+configurations {
+    testOutput.extendsFrom (testCompile)
+    integrationTestOutput.extendsFrom (testCompile)
+    andyTestOutput.extendsFrom (testCompile)
+}
+
+task jarTest (type: Jar, dependsOn: testClasses) {
+    from sourceSets.test.output
+    classifier = 'test'
+}
+
+task jarIntegrationTest (type: Jar, dependsOn: testClasses) {
+    from sourceSets.integrationTest.output
+    classifier = 'integrationTest'
+}
+
+task jarAndyTest (type: Jar, dependsOn: testClasses) {
+    from sourceSets.andyTest.output
+    classifier = 'andyTest'
+}
+
+artifacts {
+    testOutput jarTest
+    integrationTestOutput jarIntegrationTest
+    andyTestOutput jarAndyTest
+}
+
+
+dependencies {
+}
+
