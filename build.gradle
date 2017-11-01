@@ -49,8 +49,8 @@ subprojects {
 	}
 
 	testSets {
-		integrationTest { dirName = 'integration-test' }
-		andyTest { dirName = 'andy-test' }
+		integrationTest { dirName = 'itest' }
+		andyTest { dirName = 'andyTest' }
 	}
 
 	check.dependsOn integrationTest
@@ -65,6 +65,14 @@ subprojects {
 		testCompile('org.springframework.boot:spring-boot-starter-test')
 		integrationTestCompile 'org.assertj:assertj-core:3.0.0'
 		andyTestCompile group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
+	}
+
+	idea {
+		module {
+			// tell intellij to use different output dir for each
+            // project, so it doesn't conflict with Gradle
+			inheritOutputDirs = true
+		}
 	}
 
 }
